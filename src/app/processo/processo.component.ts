@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-processo',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./processo.component.css']
 })
 export class ProcessoComponent implements OnInit {
-
+  @Input() public progresso = 0;
   constructor() { }
 
   ngOnInit() {
