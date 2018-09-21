@@ -9,13 +9,14 @@ import { FRASES } from './frase.mock';
 })
 export class PainelComponent implements OnInit {
   public frase: Frase[] = FRASES;
-  public resposta: string;
+    resposta = '';
   rodada = 0;
   public rodadaFrase: Frase;
   public progresso = 0;
+  tentivas = 3;
 
   constructor() {
-    this.rodadaFrase = this.frase[this.rodada];
+    this.atualizaRodada();
     console.log(this.rodadaFrase);
   }
 
@@ -35,11 +36,25 @@ export class PainelComponent implements OnInit {
       this.progresso += (100 / this.frase.length);
       console.log(this.progresso);
       console.log(this.rodada);
-      this.rodadaFrase = this.frase[this.rodada];
+      // atualiza o objeto rodadaFrase
+      this.atualizaRodada();
       console.log(this.rodadaFrase);
 
     } else {
       alert('A tradução está incorreta!');
+      this.tentivas--;
+      if (this.tentivas === -1) {
+        alert('Você perdeu todas as tentativas');
+      }
+      this.atualizaRodada();
     }
+  }
+
+  public atualizaRodada(): void {
+    // Define a frase da rodada com base em alguma logica
+    this.rodadaFrase = this.frase[this.rodada];
+
+    // limpar a respota
+    this.resposta = '';
   }
 }
